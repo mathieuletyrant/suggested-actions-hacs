@@ -8,7 +8,7 @@
           "name": "Nom"
         },
         "data_description": {
-          "name": "Donne son identifiant au capteur : `sensor.<nom>_classement`."
+          "name": "Donne son identifiant au capteur : `Actions suggérées` donne `sensor.actions_suggerees_classement`."
         }
       }
     },

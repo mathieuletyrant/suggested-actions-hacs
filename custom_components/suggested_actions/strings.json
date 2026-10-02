@@ -8,7 +8,7 @@
           "name": "Name"
         },
         "data_description": {
-          "name": "Gives the sensor its id: `sensor.<name>_ranking`."
+          "name": "Gives the sensor its id: `Suggested actions` makes `sensor.suggested_actions_ranking`."
         }
       }
     },

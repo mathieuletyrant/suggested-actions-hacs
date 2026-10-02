@@ -1,0 +1,10 @@
+# The oldest Home Assistant hacs.json claims to support, so the claim is tested
+# rather than asserted. tests/test_floor.py fails if this and hacs.json drift.
+#
+# 2025.4.0 rather than something older for a boring reason: the whole 2025.3.x
+# line pins an aiohttp PyPI has since yanked, so pip cannot resolve it. A floor
+# nobody can install is a claim nobody can test.
+#
+# It needs Python >= 3.13, which is what the CI matrix pairs it with.
+homeassistant==2025.4.0
+pytest==9.1.1

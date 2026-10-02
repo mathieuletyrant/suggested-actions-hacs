@@ -1,0 +1,4 @@
+# Pinned, not `>=`: a new ruff minor adds rules, so an unpinned linter turns a
+# green branch red without a commit. Bump it deliberately and run `ruff check`
+# locally before pushing the bump. pyproject.toml holds the configuration.
+ruff==0.15.8

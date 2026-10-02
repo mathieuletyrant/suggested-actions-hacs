@@ -1,0 +1,16 @@
+{
+  "domain": "suggested_actions",
+  "name": "Suggested Actions",
+  "codeowners": [
+    "@mathieuletyrant"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/mathieuletyrant/suggested-actions-hacs",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/mathieuletyrant/suggested-actions-hacs/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "2026.10.0"
+}

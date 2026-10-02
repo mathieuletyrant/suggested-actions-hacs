@@ -1,0 +1,7 @@
+reset:
+  fields:
+    action:
+      required: false
+      example: roborock
+      selector:
+        text:

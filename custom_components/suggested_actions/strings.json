@@ -1,0 +1,99 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Suggested actions",
+        "description": "Learns which quick actions you click at this time of day and day of the week, and ranks them in one sensor. It suggests; it never runs anything. Add your actions afterwards, from the integration card.",
+        "data": {
+          "name": "Name"
+        },
+        "data_description": {
+          "name": "Gives the sensor its id: `sensor.<name>_ranking`."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Already configured. Only one instance is needed."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Suggested actions",
+        "data": {
+          "top_size": "Number of suggestions",
+          "threshold": "Suggestion threshold",
+          "half_life_days": "Half-life (days)",
+          "debounce_minutes": "Anti-duplicate window (minutes)",
+          "users": "Users to learn from"
+        },
+        "data_description": {
+          "top_size": "How many actions the `top` attribute lists at most.",
+          "threshold": "Roughly how many times an action must have been used at the same moment before it is suggested. 1 is quick to react, 3 is cautious.",
+          "half_life_days": "After this many days, a use counts half as much. A habit you drop fades on its own.",
+          "debounce_minutes": "Several clicks on the same action within this window count once — nudging the temperature three times is one intention.",
+          "users": "Empty learns from every person. Automations, physical buttons and voice satellites never count: they have no user."
+        }
+      }
+    }
+  },
+  "config_subentries": {
+    "action": {
+      "title": "Action",
+      "entry_type": "Action",
+      "initiate_flow": {
+        "user": "Add an action"
+      },
+      "step": {
+        "user": {
+          "title": "Action",
+          "description": "A click on any of these entities, from a dashboard or the app, counts as one use of this action.",
+          "data": {
+            "name": "Name",
+            "entities": "Entities",
+            "icon": "Icon"
+          },
+          "data_description": {
+            "name": "Also gives the action its id in the `top` attribute — `Robot vacuum` becomes `robot_vacuum`. The id is fixed once created, so renaming does not break your dashboard templates.",
+            "entities": "Several when one action has several faces, such as an air conditioning script and the climate entity itself. A script that switches on another tracked entity counts once, for the script."
+          }
+        },
+        "reconfigure": {
+          "title": "Change this action",
+          "description": "A click on any of these entities, from a dashboard or the app, counts as one use of this action.",
+          "data": {
+            "name": "Name",
+            "entities": "Entities",
+            "icon": "Icon"
+          },
+          "data_description": {
+            "name": "Also gives the action its id in the `top` attribute — `Robot vacuum` becomes `robot_vacuum`. The id is fixed once created, so renaming does not break your dashboard templates.",
+            "entities": "Several when one action has several faces, such as an air conditioning script and the climate entity itself. A script that switches on another tracked entity counts once, for the script."
+          }
+        }
+      },
+      "abort": {
+        "reconfigure_successful": "Action updated."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "ranking": {
+        "name": "Ranking"
+      }
+    }
+  },
+  "services": {
+    "reset": {
+      "name": "Reset",
+      "description": "Forgets what was learnt for one action, or for all of them.",
+      "fields": {
+        "action": {
+          "name": "Action",
+          "description": "The action's id, as listed in the `top` attribute. Leave empty to reset every action."
+        }
+      }
+    }
+  }
+}

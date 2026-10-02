@@ -1,0 +1,25 @@
+name: HACS validation
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main", "claude/**"]
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  validate-hacs:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: HACS validation
+        uses: "hacs/action@main"
+        with:
+          category: "integration"
+          # brands : drop this once the integration has images in
+          # https://github.com/home-assistant/brands. Until then the check
+          # fails for a reason no commit here can fix, and ignoring it keeps
+          # the others honest instead of leaving the workflow permanently red.
+          ignore: "brands"

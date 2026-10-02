@@ -1,0 +1,14 @@
+{
+  "entity": {
+    "sensor": {
+      "ranking": {
+        "default": "mdi:star-shooting"
+      }
+    }
+  },
+  "services": {
+    "reset": {
+      "service": "mdi:restore"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+# Ruff is the only tool configured here. This repository ships a Home Assistant
+# custom component, not a distributable package, so there is no build backend
+# and no dependency list -- requirements_test.txt is where versions live.
+#
+# The selection below is Home Assistant core's, minus the rules that fight this
+# codebase instead of improving it. Every exclusion carries its reason.
+
+[tool.ruff]
+line-length = 88          # what Home Assistant core uses
+target-version = "py313"  # hacs.json declares HA 2025.4.0, which needs >= 3.13
+
+[tool.ruff.lint]
+select = [
+    "F", "E", "W", "I", "D", "A", "ASYNC", "B", "BLE", "C4", "C90", "DTZ",
+    "EXE", "FA", "FLY", "G", "ICN", "INT", "ISC", "LOG", "PERF", "PIE", "PT",
+    "PYI", "Q", "RET", "RSE", "RUF", "S", "SIM", "SLOT", "T20", "TID", "UP",
+    "YTT",
+]
+
+# Ruff's default exempts every name starting with an underscore from "assigned
+# but never used". That is too generous: a missing `self.` turns an attribute
+# write into a dead local named `_something`, and the default hides it.
+dummy-variable-rgx = "^_$"
+
+ignore = [
+    "D203",  # conflicts with D211, which is the convention here
+    "D213",  # conflicts with D212, same
+    "D205",  # docstring summaries here deliberately run onto a second line
+    "D401",  # docstrings are noun phrases on purpose -- "True when an entity
+             # has no effective area", not "Return true when ..."
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 25  # Home Assistant core's threshold
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+combine-as-imports = true
+split-on-trailing-comma = false
+known-first-party = ["homeassistant", "custom_components", "tests"]
+
+[tool.ruff.lint.per-file-ignores]
+# Asserts are what a test is, and a test function's name is its docstring.
+"tests/*" = ["S101", "D1"]
+# Operator tools run by hand, not shipped code: printing is their output, and
+# the test runner opens URLs because driving a local Home Assistant is its job.
+"scripts/*" = ["T20", "S310", "D1"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

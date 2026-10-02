@@ -1,0 +1,12 @@
+# The environment a contributor builds and CI runs. Pinned exactly, not `>=`:
+# `homeassistant>=...` does not mean "a recent Home Assistant" -- pip resolves
+# it against whatever interpreter it finds and walks backwards until something
+# installs, which produces a release whose own pins no longer import.
+#
+# This release declares Python 3.14.2 as its floor, so an older interpreter
+# fails the install with a sentence someone can act on.
+#
+# requirements_test_min.txt is the same file for the oldest release hacs.json
+# claims to support; keep the pytest pin here and there in step.
+homeassistant==2026.8.3
+pytest==9.1.1

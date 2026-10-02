@@ -1,0 +1,99 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Actions suggérées",
+        "description": "Apprend quelles actions rapides vous lancez à cette heure et ce jour de la semaine, et les classe dans un capteur. Elle suggère, elle n'exécute jamais rien. Ajoutez vos actions ensuite, depuis la carte de l'intégration.",
+        "data": {
+          "name": "Nom"
+        },
+        "data_description": {
+          "name": "Donne son identifiant au capteur : `sensor.<nom>_classement`."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Déjà configurée. Une seule instance suffit."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Actions suggérées",
+        "data": {
+          "top_size": "Nombre de suggestions",
+          "threshold": "Seuil de suggestion",
+          "half_life_days": "Demi-vie (jours)",
+          "debounce_minutes": "Fenêtre anti-doublon (minutes)",
+          "users": "Utilisateurs suivis"
+        },
+        "data_description": {
+          "top_size": "Nombre maximum d'actions dans l'attribut `top`.",
+          "threshold": "Environ le nombre de fois où l'action doit avoir été faite au même moment avant d'être suggérée. 1 = réactif, 3 = prudent.",
+          "half_life_days": "Au bout de ce nombre de jours, un usage compte moitié moins. Une habitude abandonnée s'efface seule.",
+          "debounce_minutes": "Plusieurs clics sur la même action dans cette fenêtre comptent pour un — régler la température trois fois, c'est une seule intention.",
+          "users": "Vide = tout le monde. Les automatisations, boutons physiques et satellites vocaux ne comptent jamais : ils n'ont pas d'utilisateur."
+        }
+      }
+    }
+  },
+  "config_subentries": {
+    "action": {
+      "title": "Action",
+      "entry_type": "Action",
+      "initiate_flow": {
+        "user": "Ajouter une action"
+      },
+      "step": {
+        "user": {
+          "title": "Action",
+          "description": "Un clic sur l'une de ces entités, depuis un dashboard ou l'app, compte comme un usage de cette action.",
+          "data": {
+            "name": "Nom",
+            "entities": "Entités",
+            "icon": "Icône"
+          },
+          "data_description": {
+            "name": "Donne aussi son identifiant à l'action dans l'attribut `top` — `Prise terrasse` devient `prise_terrasse`. L'identifiant est figé à la création : renommer ne casse pas vos templates.",
+            "entities": "Plusieurs quand une action a plusieurs visages, comme un script de clim et l'entité climate elle-même. Un script qui allume une autre entité suivie compte une fois, pour le script."
+          }
+        },
+        "reconfigure": {
+          "title": "Modifier cette action",
+          "description": "Un clic sur l'une de ces entités, depuis un dashboard ou l'app, compte comme un usage de cette action.",
+          "data": {
+            "name": "Nom",
+            "entities": "Entités",
+            "icon": "Icône"
+          },
+          "data_description": {
+            "name": "Donne aussi son identifiant à l'action dans l'attribut `top` — `Prise terrasse` devient `prise_terrasse`. L'identifiant est figé à la création : renommer ne casse pas vos templates.",
+            "entities": "Plusieurs quand une action a plusieurs visages, comme un script de clim et l'entité climate elle-même. Un script qui allume une autre entité suivie compte une fois, pour le script."
+          }
+        }
+      },
+      "abort": {
+        "reconfigure_successful": "Action modifiée."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "ranking": {
+        "name": "Classement"
+      }
+    }
+  },
+  "services": {
+    "reset": {
+      "name": "Remettre à zéro",
+      "description": "Oublie ce qui a été appris pour une action, ou pour toutes.",
+      "fields": {
+        "action": {
+          "name": "Action",
+          "description": "L'identifiant de l'action, tel qu'il apparaît dans l'attribut `top`. Vide = toutes les actions."
+        }
+      }
+    }
+  }
+}
